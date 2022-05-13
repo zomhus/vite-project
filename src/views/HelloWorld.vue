@@ -51,9 +51,7 @@ const update = (result: any) => {
 </script>
 
 <template>
-  <request-btn :request="(loading) => search" :disabled="true">
-    target
-  </request-btn>
+  <request-btn :request="(loading) => search"> target </request-btn>
   <el-button @click="check" :loading="loading" auto-insert-space>
     检查</el-button
   >

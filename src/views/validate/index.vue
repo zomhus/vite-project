@@ -1,13 +1,14 @@
 <template>
-  <form>
-    <input type="text" />
+  <form @submit.prevent="submit" ref="formRef">
+    <input type="text" v-model="searchCondition.text" />
+    <button type="submit">提交</button>
   </form>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-
-const inputRef = ref<null>(null);
+import { reactive, ref } from "vue";
+const formRef = ref<null | Element>(null);
+const searchCondition = reactive({ text: "" });
 </script>
 
 <style scoped></style>
