@@ -7,7 +7,7 @@
 
 <script setup lang="ts">
 import { reactive, ref } from "vue";
-const formRef = ref<null | Element>(null);
+const formRef = ref<null | HTMLElementTagNameMap["input"]>(null);
 const searchCondition = reactive({ text: "" });
 </script>
 
