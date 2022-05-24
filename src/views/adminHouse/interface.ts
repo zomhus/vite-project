@@ -27,3 +27,8 @@ export interface IHouse {
   compleYear: string;
   userId: number | string;
 }
+
+export interface IHouseTableRow extends IHouse {
+  id: number;
+  user: IUser;
+}

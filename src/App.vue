@@ -1,11 +1,5 @@
 <template>
-  <div>
-    <AdminHouse />
-    <AdminUser />
-  </div>
+  <router-view></router-view>
 </template>
 
-<script setup lang="ts">
-import AdminHouse from "./views/adminHouse/index.vue";
-import AdminUser from "./views/adminUser/index.vue";
-</script>
+<script setup lang="ts"></script>

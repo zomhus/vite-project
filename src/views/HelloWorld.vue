@@ -3,7 +3,6 @@ import Validate from "./validate/index.vue";
 import { ref, reactive, watch, watchEffect, Ref } from "vue";
 import { store } from "../store/modules/user";
 import requestBtn from "../components/request-btn/index.vue";
-import { tr } from "element-plus/lib/locale";
 const useStore = store();
 
 let info = reactive<{

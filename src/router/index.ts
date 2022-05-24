@@ -5,4 +5,3 @@ export const router = createRouter({
   history: createMemoryHistory(),
   routes,
 });
-console.log(router);

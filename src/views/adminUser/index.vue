@@ -44,12 +44,12 @@
 <script setup lang="ts">
 import axios from "axios";
 import { nextTick, onMounted, reactive, ref } from "vue-demi";
-import { IModalFormInstance } from "../globalInterface/index";
+import { IModalFormInstance } from "../../interfaces/index";
 import ModalForm from "./components/modalForm/index.vue";
 import { IUser } from "./interface";
 
 const modalForm = ref<IModalFormInstance<IUser>>();
-const id = ref();
+const idRef = ref();
 const columns = reactive([
   { title: "用户名字", dataIndex: "userName" },
   { title: "年龄", dataIndex: "age" },
@@ -67,8 +67,8 @@ const view = (scope: IUser) => {
   state.visible = true;
   nextTick(() => {
     let { data } = getForm();
-    const { age, city, userName, school, userId } = scope;
-    id.value = userId;
+    const { age, city, userName, school, id } = scope;
+    idRef.value = id;
     data.userName = userName;
     data.age = age;
     data.school = school;

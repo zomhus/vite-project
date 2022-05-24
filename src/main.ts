@@ -5,10 +5,12 @@ import store from "./store/index";
 import "element-plus/dist/index.css";
 import ElementPlus from "element-plus";
 
+import { router } from "./router/index";
+
 const app = createApp(App);
 
 app
-
+  .use(router)
   .use(ElementPlus)
 
   .use(store)
