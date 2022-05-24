@@ -1,9 +1,11 @@
-<script setup lang="ts">
-import HelloWorld from "./views/HelloWorld.vue";
-</script>
-
 <template>
-  <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
+  <div>
+    <AdminHouse />
+    <AdminUser />
+  </div>
 </template>
 
-<style></style>
+<script setup lang="ts">
+import AdminHouse from "./views/adminHouse/index.vue";
+import AdminUser from "./views/adminUser/index.vue";
+</script>

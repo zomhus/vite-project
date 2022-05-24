@@ -1,0 +1,29 @@
+import { FormInstance } from "element-plus";
+
+export interface IModalFormInstance {
+  form: FormInstance;
+  data: IFormData;
+}
+
+export interface IFormData {
+  communityName: string;
+  floor: number;
+  address: string;
+  compleYear: string;
+}
+
+export interface IUser {
+  id: number;
+  userName: string;
+  age: number;
+  city: string;
+  school: string;
+}
+
+export interface IHouse {
+  communityName: string;
+  floor: number;
+  address: string;
+  compleYear: string;
+  userId: number | string;
+}
