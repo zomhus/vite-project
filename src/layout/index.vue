@@ -3,7 +3,7 @@
     <el-header> h </el-header>
     <el-container>
       <el-aside width="200px">s </el-aside>
-      <el-main> <slot /></el-main>
+      <el-main> <router-view /></el-main>
     </el-container>
   </el-container>
 
