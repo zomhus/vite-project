@@ -2,18 +2,18 @@ import { defineStore, StoreDefinition } from "pinia";
 
 export const store: StoreDefinition = defineStore<
   string,
-  { name: string },
-  { setName: () => void }
+  { mode: string },
+  { setMode: () => void }
 >({
-  id: "user",
+  id: "menu",
   state: () => {
     return {
-      name: "张三",
+      mode: "horizontal",
     };
   },
   actions: {
-    setName(value: string) {
-      this.name = value;
+    setMode(value: string) {
+      this.mode = value;
     },
   },
 });
