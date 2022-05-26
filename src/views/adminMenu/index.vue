@@ -71,7 +71,7 @@ const view = (row: IMenuTableRow) => {
   });
 };
 const del = (row: IMenuTableRow) => {
-  axios.delete("http://localhost:3001/menus/" + row.id).then((res) => {
+  axios.delete("http://localhost:8888/menus/" + row.id).then((res) => {
     state.visible = false;
     getList();
   });

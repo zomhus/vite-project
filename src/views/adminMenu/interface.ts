@@ -3,6 +3,7 @@ export interface IMenuForm {
   path: string;
   componentName: string;
   menuName: string;
+  iconName: string;
 }
 
 export interface IMenuTableRow extends IMenuForm {

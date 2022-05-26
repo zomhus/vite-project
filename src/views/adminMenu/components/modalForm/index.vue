@@ -15,7 +15,7 @@
     </el-form-item>
     <el-form-item
       label="路由路径"
-      prop="path"
+      prop="pathName"
       :rules="[{ message: '必填', required: true }]"
     >
       <el-input v-model="data.path" />
@@ -34,6 +34,13 @@
     >
       <el-input v-model="data.menuName" />
     </el-form-item>
+    <el-form-item
+      label="菜单名称"
+      prop="iconName"
+      :rules="[{ message: '必填', required: true }]"
+    >
+      <el-input v-model="data.iconName" />
+    </el-form-item>
   </el-form>
 </template>
 
@@ -48,6 +55,7 @@ const data = reactive<IMenuForm>({
   path: "",
   componentName: "",
   menuName: "",
+  iconName: "",
 });
 
 const form = ref<FormInstance>();
