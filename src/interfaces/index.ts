@@ -22,7 +22,10 @@ export interface IParams<T> {
   params?: T;
 }
 
-//请求参数转换
-export interface ITransformData {
-  [key: string]: string;
+// 分页数据
+export interface IQueryResult<T> {
+  total: number;
+  current: number;
+  pageSize: number;
+  data: T[];
 }

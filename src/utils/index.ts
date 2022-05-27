@@ -19,12 +19,13 @@ export function deepClone(target: any) {
 }
 
 // 清空数据中的为空数据
-export const transformData = ({ data }: any) => {
-  if (data) {
-    const props = Object.keys(data);
+export const transformData = ({ data, params }: any) => {
+  if (data || params) {
+    const target = data || params;
+    const props = Object.keys(target);
     props.forEach((prop) => {
-      if (!data[prop]) {
-        delete data[prop];
+      if (!target[prop]) {
+        delete target[prop];
       }
     });
   }

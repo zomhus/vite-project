@@ -3,6 +3,7 @@ import { IParams } from "../interfaces";
 import { transformData } from "../utils";
 
 axios.interceptors.request.use((config: AxiosRequestConfig) => {
+  console.log(config);
   transformData(config);
   return config;
 });

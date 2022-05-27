@@ -1,6 +1,12 @@
 <template>
   <div class="admin-house">
     <el-button @click="addRow">新增</el-button>
+    <el-input
+      style="width: 250px"
+      v-model="searchCondition.iconName"
+    ></el-input>
+    <el-button @click="getList({ current: 1 })">搜索</el-button>
+
     <el-table :data="state.data">
       <el-table-column
         :prop="column.dataIndex"
@@ -25,6 +31,15 @@
         </template>
       </el-table-column>
     </el-table>
+    <el-pagination
+      v-model:currentPage="searchCondition.current"
+      v-model:page-size="searchCondition.pageSize"
+      :total="total"
+      :page-sizes="[10, 20, 30, 40]"
+      layout="total, sizes, prev, pager, next, jumper"
+      @size-change="(pageSize) => getList({ pageSize })"
+      @current-change="(current) => getList({ current })"
+    />
     <el-dialog
       v-model="state.visible"
       title="新增"
@@ -43,37 +58,42 @@
 </template>
 
 <script setup lang="ts">
-import axios from "axios";
 import { nextTick, onMounted, reactive, ref } from "vue-demi";
 import { IModalFormInstance } from "../../interfaces/index";
 import ModalForm from "./components/modalForm/index.vue";
-import { ICreateMenuForm, IMenuTableRow } from "./interface";
+import {
+  ICreateMenuForm,
+  IMenuTableRow,
+  IQueryMenuCondition,
+} from "./interface";
 import { add, list } from "./api";
 const modalForm = ref<IModalFormInstance<ICreateMenuForm>>();
 
 const columns = ref([
   { title: "ID", dataIndex: "id" },
-  { title: "路由地址", dataIndex: "path" },
+  { title: "路由地址", dataIndex: "pathName" },
   { title: "菜单名称", dataIndex: "menuName" },
   { title: "组件名称", dataIndex: "componentName" },
   { title: "生成时间", dataIndex: "createdDate" },
   { title: "修改时间", dataIndex: "updateDate" },
 ]);
-const state = reactive({
+const state = reactive<{ visible: boolean; data: IMenuTableRow[] }>({
   visible: false,
   data: [],
 });
 
+const searchCondition = ref<IQueryMenuCondition>({
+  current: 1,
+  pageSize: 10,
+  menuName: "",
+  iconName: "",
+});
+
+const total = ref<number>(0);
 const view = (row: IMenuTableRow) => {
   state.visible = true;
   nextTick(() => {
     const { data } = getForm();
-  });
-};
-const del = (row: IMenuTableRow) => {
-  axios.delete("http://localhost:8888/menus/" + row.id).then((res) => {
-    state.visible = false;
-    getList();
   });
 };
 
@@ -88,15 +108,22 @@ const submit = () => {
   form.validate((valid: boolean) => {
     if (valid) {
       add(data).then((res) => {
-        console.log(res);
+        state.visible = false;
+        getList({ current: 1 });
       });
     }
   });
 };
 const handleClose = () => {};
 
-const getList = () => {
-  list({ current: 1, pageSize: 1, menuName: "路由菜单" });
+const getList = (params?: IQueryMenuCondition) => {
+  list({
+    ...searchCondition.value,
+    ...params,
+  }).then((res) => {
+    state.data = res.data.data;
+    total.value = res.data.total;
+  });
 };
 
 onMounted(() => {

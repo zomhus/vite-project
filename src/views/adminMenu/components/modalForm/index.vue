@@ -43,7 +43,8 @@
 <script setup lang="ts">
 import { FormInstance } from "element-plus";
 import { onMounted, reactive, ref } from "vue";
-import { ICreateMenuForm } from "../../interface";
+import { getTreeApi } from "../../api";
+import { ICreateMenuForm, ICreateMenuFormTree } from "../../interface";
 
 const data = reactive<ICreateMenuForm>({
   parentId: "",
@@ -57,8 +58,12 @@ const form = ref<FormInstance>();
 
 defineExpose({ form, data });
 
-const menuTree = ref([]);
-const getTree = () => {};
+const menuTree = ref<ICreateMenuFormTree>([]);
+const getTree = () => {
+  getTreeApi().then((res) => {
+    menuTree.value = res.data;
+  });
+};
 
 onMounted(() => {
   getTree();
