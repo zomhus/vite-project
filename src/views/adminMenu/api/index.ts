@@ -24,8 +24,15 @@ export const list = <T extends IQueryMenuCondition>(params: T) => {
 };
 
 export const getTreeApi = () => {
-  return request<undefined, IResponse<ICreateMenuFormTree>>({
+  return request<undefined, IResponse<ICreateMenuFormTree[]>>({
     method: "GET",
     url: "/api/menu/tree",
+  });
+};
+
+export const delApi = (id: number) => {
+  return request<undefined, IResponse<null>>({
+    method: "DELETE",
+    url: "/api/menu/" + id,
   });
 };

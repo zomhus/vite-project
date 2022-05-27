@@ -14,24 +14,49 @@
     >
       <el-input v-model="data.password" />
     </el-form-item>
+    <el-form-item
+      label="重复密码"
+      prop="passwordRepeat"
+      :rules="[{ message: '重复密码必填', required: true }]"
+    >
+      <el-input v-model="data.passwordRepeat" />
+    </el-form-item>
+    <el-form-item
+      label="手机号码"
+      prop="phone"
+      :rules="[{ message: '电话号码必填', required: true }]"
+    >
+      <el-input v-model="data.phone" />
+    </el-form-item>
+    <el-form-item
+      label="学校"
+      prop="school"
+      :rules="[{ message: '学校必填', required: true }]"
+    >
+      <el-input v-model="data.school" />
+    </el-form-item>
   </el-form>
   <el-button @click="regist">注册</el-button>
 </template>
 
 <script setup lang="ts">
 import { reactive, ref } from "vue";
-import { IUser } from "./interface";
+import { ICreateUserForm } from "./interface";
 import { FormInstance, ElMessage } from "element-plus";
-import axios from "axios";
+import { registApi } from "./api";
 const form = ref<FormInstance>();
-const data = reactive<IUser>({
+
+const data = reactive<ICreateUserForm>({
   userName: "",
   password: "",
+  phone: "",
+  school: "",
+  passwordRepeat: "",
 });
 const regist = () => {
   form.value?.validate((validate) => {
     if (validate) {
-      axios.post("http://localhost:3001/users", data).then((res) => {
+      registApi(data).then(() => {
         ElMessage.success("注册成功");
       });
     }

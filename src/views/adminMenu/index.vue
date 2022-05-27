@@ -66,7 +66,7 @@ import {
   IMenuTableRow,
   IQueryMenuCondition,
 } from "./interface";
-import { add, list } from "./api";
+import { add, delApi, list } from "./api";
 const modalForm = ref<IModalFormInstance<ICreateMenuForm>>();
 
 const columns = ref([
@@ -74,7 +74,7 @@ const columns = ref([
   { title: "路由地址", dataIndex: "pathName" },
   { title: "菜单名称", dataIndex: "menuName" },
   { title: "组件名称", dataIndex: "componentName" },
-  { title: "生成时间", dataIndex: "createdDate" },
+  { title: "生成时间", dataIndex: "createDate" },
   { title: "修改时间", dataIndex: "updateDate" },
 ]);
 const state = reactive<{ visible: boolean; data: IMenuTableRow[] }>({
@@ -123,6 +123,12 @@ const getList = (params?: IQueryMenuCondition) => {
   }).then((res) => {
     state.data = res.data.data;
     total.value = res.data.total;
+  });
+};
+
+const del = (row: IMenuTableRow) => {
+  delApi(row.id).then(() => {
+    getList({ current: 1 });
   });
 };
 

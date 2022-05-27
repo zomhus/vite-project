@@ -6,7 +6,7 @@ export interface ICreateMenuForm {
   iconName: string;
 }
 
-export interface ICreateMenuFormTree extends ICreateMenuForm {
+export interface ICreateMenuFormTree extends IMenuTableRow {
   children: ICreateMenuFormTree[];
 }
 

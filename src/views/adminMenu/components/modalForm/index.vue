@@ -58,7 +58,7 @@ const form = ref<FormInstance>();
 
 defineExpose({ form, data });
 
-const menuTree = ref<ICreateMenuFormTree>([]);
+const menuTree = ref<ICreateMenuFormTree[]>([]);
 const getTree = () => {
   getTreeApi().then((res) => {
     menuTree.value = res.data;
