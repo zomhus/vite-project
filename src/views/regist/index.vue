@@ -35,6 +35,7 @@
     >
       <el-input v-model="data.school" />
     </el-form-item>
+    <el-form-item label="性别" prop="sex"> </el-form-item>
   </el-form>
   <el-button @click="regist">注册</el-button>
 </template>
