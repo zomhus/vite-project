@@ -47,9 +47,9 @@ import axios from "axios";
 import { nextTick, onMounted, reactive, ref } from "vue-demi";
 import { IModalFormInstance } from "../../interfaces/index";
 import ModalForm from "./components/modalForm/index.vue";
-import { IMenuForm, IMenuTableRow } from "./interface";
-
-const modalForm = ref<IModalFormInstance<IMenuForm>>();
+import { ICreateMenuForm, IMenuTableRow } from "./interface";
+import { add, list } from "./api";
+const modalForm = ref<IModalFormInstance<ICreateMenuForm>>();
 
 const columns = ref([
   { title: "ID", dataIndex: "id" },
@@ -81,15 +81,14 @@ const addRow = () => {
   state.visible = true;
 };
 
-const getForm = () => modalForm.value as IModalFormInstance<IMenuForm>;
+const getForm = () => modalForm.value as IModalFormInstance<ICreateMenuForm>;
 
 const submit = () => {
   const { form, data } = getForm();
   form.validate((valid: boolean) => {
     if (valid) {
-      axios.post("http://localhost:3001/menus", data).then((res) => {
-        state.visible = false;
-        getList();
+      add(data).then((res) => {
+        console.log(res);
       });
     }
   });
@@ -97,9 +96,7 @@ const submit = () => {
 const handleClose = () => {};
 
 const getList = () => {
-  axios.get("http://localhost:3001/menus").then((res) => {
-    state.data = res.data;
-  });
+  list({ current: 1, pageSize: 1, menuName: "路由菜单" });
 };
 
 onMounted(() => {

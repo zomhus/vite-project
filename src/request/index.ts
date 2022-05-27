@@ -1,28 +1,30 @@
-import axios, { AxiosResponse, Method } from "axios";
-axios.interceptors.request.use((config) => {});
+import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
+import { IParams } from "../interfaces";
+import { transformData } from "../utils";
+
+axios.interceptors.request.use((config: AxiosRequestConfig) => {
+  transformData(config);
+  return config;
+});
 axios.interceptors.response.use(
   (response: AxiosResponse) => {
-    return Promise.resolve(response.data);
+    return response;
   },
-  () => {}
+  (error) => {
+    return Promise.reject(error.data);
+  }
 );
 
-interface IParams<T> {
-  url: string;
-  method: Method;
-  data?: T;
-  params?: T;
-}
-
-const request = <T, R>(params: IParams<T>) => {
-  return axios({
-    ...params,
+const request = <T, R>(params: IParams<T>): Promise<R> => {
+  return new Promise((resolve, reject) => {
+    axios({ ...params })
+      .then((res: AxiosResponse<R>) => {
+        resolve(res.data);
+      })
+      .catch((err) => {
+        reject(err);
+      });
   });
 };
 
-request({
-  url: "/menu/create",
-  method: "POST",
-  data: { id: 123 },
-}).then((res) => {});
 export default request;

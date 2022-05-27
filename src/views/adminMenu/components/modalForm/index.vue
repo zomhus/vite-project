@@ -1,10 +1,6 @@
 <template>
   <el-form :model="data" label-width="120px" ref="form">
-    <el-form-item
-      label="父级菜单"
-      prop="parentId"
-      :rules="[{ message: '必填', required: true }]"
-    >
+    <el-form-item label="父级菜单" prop="parentId">
       <el-tree-select
         default-expand-all
         check-strictly
@@ -18,7 +14,7 @@
       prop="pathName"
       :rules="[{ message: '必填', required: true }]"
     >
-      <el-input v-model="data.path" />
+      <el-input v-model="data.pathName" />
     </el-form-item>
     <el-form-item
       label="组件名称"
@@ -47,12 +43,11 @@
 <script setup lang="ts">
 import { FormInstance } from "element-plus";
 import { onMounted, reactive, ref } from "vue";
-import axios from "axios";
-import { IMenuForm } from "../../interface";
+import { ICreateMenuForm } from "../../interface";
 
-const data = reactive<IMenuForm>({
-  parentId: 1,
-  path: "",
+const data = reactive<ICreateMenuForm>({
+  parentId: "",
+  pathName: "",
   componentName: "",
   menuName: "",
   iconName: "",
@@ -63,11 +58,7 @@ const form = ref<FormInstance>();
 defineExpose({ form, data });
 
 const menuTree = ref([]);
-const getTree = () => {
-  axios.get("http://localhost:3001/getTreeMenu").then((res) => {
-    menuTree.value = res.data;
-  });
-};
+const getTree = () => {};
 
 onMounted(() => {
   getTree();
