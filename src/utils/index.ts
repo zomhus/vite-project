@@ -1,6 +1,3 @@
-import { AxiosRequestHeaders } from "axios";
-import { ITransformData } from "../interfaces";
-
 const getDataType = (target: object) => {
   return Object.prototype.toString.call(target).slice(8, -1);
 };
@@ -24,7 +21,7 @@ export const transformData = ({ data, params }: any) => {
     const target = data || params;
     const props = Object.keys(target);
     props.forEach((prop) => {
-      if (!target[prop]) {
+      if (target[prop] === "") {
         delete target[prop];
       }
     });

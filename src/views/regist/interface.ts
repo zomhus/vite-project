@@ -4,4 +4,7 @@ export interface ICreateUserForm {
   school: string;
   passwordRepeat: string;
   phone: number | string;
+  sex: number;
+  realName: string;
+  age: string | number;
 }

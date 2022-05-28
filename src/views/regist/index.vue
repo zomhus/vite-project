@@ -35,7 +35,26 @@
     >
       <el-input v-model="data.school" />
     </el-form-item>
-    <el-form-item label="性别" prop="sex"> </el-form-item>
+    <el-form-item label="性别" prop="sex">
+      <el-select v-model="data.sex">
+        <el-option :value="1" label="男"></el-option>
+        <el-option :value="0" label="女"></el-option>
+      </el-select>
+    </el-form-item>
+    <el-form-item
+      label="真实姓名"
+      prop="realName"
+      :rules="[{ message: '学校必填', required: true }]"
+    >
+      <el-input v-model="data.realName"></el-input>
+    </el-form-item>
+    <el-form-item
+      label="真实姓名"
+      prop="age"
+      :rules="[{ message: '学校必填', required: true }]"
+    >
+      <el-input-number v-model="data.age"></el-input-number>
+    </el-form-item>
   </el-form>
   <el-button @click="regist">注册</el-button>
 </template>
@@ -53,6 +72,9 @@ const data = reactive<ICreateUserForm>({
   phone: "",
   school: "",
   passwordRepeat: "",
+  sex: 1,
+  realName: "",
+  age: "",
 });
 const regist = () => {
   form.value?.validate((validate) => {

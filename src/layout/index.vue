@@ -23,17 +23,10 @@ const toggleMode = () => {
   mode === "veritical" ? setMode("horizontal") : setMode("veritical");
 };
 
-const handleSelect = (index) => {
-  console.log(index);
-};
 const activeIndex = ref();
 
 const menuList = ref<any[]>([]);
-onMounted(() => {
-  axios.get("http://localhost:3001/getTreeMenu").then((res) => {
-    menuList.value = res.data;
-  });
-});
+onMounted(() => {});
 </script>
 
 <style scoped></style>

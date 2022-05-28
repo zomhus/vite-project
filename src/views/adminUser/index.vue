@@ -45,10 +45,11 @@
 import axios from "axios";
 import { nextTick, onMounted, reactive, ref } from "vue-demi";
 import { IModalFormInstance } from "../../interfaces/index";
+import { list } from "./api";
 import ModalForm from "./components/modalForm/index.vue";
-import { IUser } from "./interface";
+import { IUserTableRow } from "./interface";
 
-const modalForm = ref<IModalFormInstance<IUser>>();
+const modalForm = ref<IModalFormInstance<IUserTableRow>>();
 const idRef = ref();
 const columns = reactive([
   { title: "用户名字", dataIndex: "userName" },
@@ -63,7 +64,7 @@ const state = reactive({
 const addRow = () => {
   state.visible = true;
 };
-const view = (scope: IUser) => {
+const view = (scope: IUserTableRow) => {
   state.visible = true;
   nextTick(() => {
     let { data } = getForm();
@@ -76,13 +77,13 @@ const view = (scope: IUser) => {
   });
 };
 
-const del = (scope: IUser) => {
+const del = (scope: IUserTableRow) => {
   axios.delete(`http://localhost:3001/users/${scope.id}`).then((res) => {
     getFunc();
   });
 };
 
-const getForm = () => modalForm.value as IModalFormInstance<IUser>;
+const getForm = () => modalForm.value as IModalFormInstance<IUserTableRow>;
 
 const submit = () => {
   const { form, data } = getForm();
@@ -96,9 +97,7 @@ const submit = () => {
   });
 };
 const getFunc = () => {
-  axios.get("http://localhost:3001/users").then((res) => {
-    state.data = res.data;
-  });
+  list().then(() => {});
 };
 
 onMounted(() => {

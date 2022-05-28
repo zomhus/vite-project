@@ -10,7 +10,7 @@ axios.interceptors.request.use((config: AxiosRequestConfig) => {
 axios.interceptors.response.use(
   (response: AxiosResponse) => {
     const { data } = response;
-    if (data.stausCode !== 200) {
+    if (data.statusCode !== 200) {
       ElMessage.error(data.message[0]);
       return Promise.reject(response);
     }
