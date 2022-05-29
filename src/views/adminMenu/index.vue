@@ -5,6 +5,16 @@
       style="width: 250px"
       v-model="searchCondition.iconName"
     ></el-input>
+    <el-date-picker
+      v-model="searchCondition.createDateBefore"
+      type="datetime"
+      placeholder="Pick a day"
+    />
+    <el-date-picker
+      v-model="searchCondition.createDateAfter"
+      type="datetime"
+      placeholder="Pick a day"
+    />
     <el-button @click="getList({ current: 1 })">搜索</el-button>
 
     <el-table :data="state.data">
@@ -67,6 +77,7 @@ import {
   IQueryMenuCondition,
 } from "./interface";
 import { add, delApi, list } from "./api";
+import { dayjs } from "element-plus";
 const modalForm = ref<IModalFormInstance<ICreateMenuForm>>();
 
 const columns = ref([
@@ -87,6 +98,8 @@ const searchCondition = ref<IQueryMenuCondition>({
   pageSize: 10,
   menuName: "",
   iconName: "",
+  createDateBefore: "",
+  createDateAfter: "",
 });
 
 const total = ref<number>(0);
@@ -121,7 +134,12 @@ const getList = (params?: IQueryMenuCondition) => {
     ...searchCondition.value,
     ...params,
   }).then((res) => {
-    state.data = res.data.data;
+    state.data = res.data.data.map((item) => {
+      return {
+        ...item,
+      };
+    });
+
     total.value = res.data.total;
   });
 };

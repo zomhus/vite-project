@@ -74,7 +74,7 @@ const data = reactive<ICreateUserForm>({
   passwordRepeat: "",
   sex: 1,
   realName: "",
-  age: "",
+  age: 0,
 });
 const regist = () => {
   form.value?.validate((validate) => {
