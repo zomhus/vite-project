@@ -89,7 +89,7 @@ const submit = () => {
   const { form, data } = getForm();
   form.validate((valid) => {
     if (valid) {
-      axios.post("http://localhost:3001/users", data).then((res) => {
+      axios.post("/api/user/regist", data).then((res) => {
         state.visible = false;
         getFunc();
       });
