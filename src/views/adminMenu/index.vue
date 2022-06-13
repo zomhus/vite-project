@@ -1,21 +1,23 @@
 <template>
   <div class="admin-house">
-    <el-button @click="addRow">新增</el-button>
-    <el-input
-      style="width: 250px"
-      v-model="searchCondition.iconName"
-    ></el-input>
-    <el-date-picker
-      v-model="searchCondition.createDateBefore"
-      type="datetime"
-      placeholder="Pick a day"
-    />
-    <el-date-picker
-      v-model="searchCondition.createDateAfter"
-      type="datetime"
-      placeholder="Pick a day"
-    />
-    <el-button @click="getList({ current: 1 })">搜索</el-button>
+    <div style="display: flex">
+      <el-button @click="addRow">新增</el-button>
+      <el-input
+        style="width: 250px"
+        v-model="searchCondition.iconName"
+      ></el-input>
+      <el-date-picker
+        v-model="searchCondition.createDateBefore"
+        type="datetime"
+        placeholder="Pick a day"
+      />
+      <el-date-picker
+        v-model="searchCondition.createDateAfter"
+        type="datetime"
+        placeholder="Pick a day"
+      />
+      <el-button @click="getList({ current: 1 })">搜索</el-button>
+    </div>
 
     <el-table :data="state.data">
       <el-table-column
@@ -77,7 +79,7 @@ import {
   IQueryMenuCondition,
 } from "./interface";
 import { add, delApi, list } from "./api";
-import { dayjs } from "element-plus";
+import { dayjs, ElMessage } from "element-plus";
 const modalForm = ref<IModalFormInstance<ICreateMenuForm>>();
 
 const columns = ref([
@@ -129,29 +131,61 @@ const submit = () => {
 };
 const handleClose = () => {};
 
-const getList = (params?: IQueryMenuCondition) => {
-  list({
-    ...searchCondition.value,
-    ...params,
-  }).then((res) => {
-    state.data = res.data.data.map((item) => {
-      return {
-        ...item,
-      };
-    });
+// const getList = (params?: IQueryMenuCondition) => {
+//   list({
+//     ...searchCondition.value,
+//     ...params,
+//   }).then((res) => {
+//     state.data = res.data.data.map((item) => {
+//       return {
+//         ...item,
+//       };
+//     });
 
-    total.value = res.data.total;
-  });
-};
+//     total.value = res.data.total;
+//   });
+// };
 
 const del = (row: IMenuTableRow) => {
   delApi(row.id).then(() => {
-    getList({ current: 1 });
+    // getList({ current: 1 });
+  });
+};
+
+const getList = () => {
+  return new Promise((resolve, reject) => {
+    fetch("/api/menu").then((response) => {
+      const { status } = response;
+      // http状态码
+      if (status !== 200) {
+        // 提示错误
+        ElMessage.error("服务端错误");
+        reject("服务端错误");
+        return;
+      }
+      response.json().then((res) => {
+        if (res.statusCode !== 200) {
+          // 提示错误
+          ElMessage.error("自定义状态错误");
+
+          reject(res.message);
+        } else {
+          resolve(res.data);
+        }
+      });
+    });
   });
 };
 
 onMounted(() => {
-  getList();
+  // getList();
+  getList()
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
 </script>
 

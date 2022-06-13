@@ -16,6 +16,7 @@
         <el-input v-model="data.password" />
       </el-form-item>
     </el-form>
+    <el-button>登录</el-button>
   </div>
 </template>
 
