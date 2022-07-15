@@ -18,6 +18,7 @@
   },
   "devDependencies": {
     "@typescript-eslint/parser": "^5.30.6",
+    "@umijs/fabric": "^2.12.2",
     "@vitejs/plugin-vue": "^2.3.1",
     "eslint": "^8.19.0",
     "less": "^4.1.2",
