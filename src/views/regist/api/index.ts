@@ -1,11 +1,9 @@
-import type { IResponse } from "../../../interfaces";
-import request from "../../../request";
-import type { ICreateUserForm } from "../interface";
+import type { IResponse } from '../../../interfaces';
+import request from '../../../request';
+import type { ICreateUserForm } from '../interface';
 
-export const registApi = <T extends ICreateUserForm>(data: T) => {
-  return request<T, IResponse<null>>({
-    method: "POST",
-    url: "/api/user/regist",
-    data,
-  });
-};
+export const registApi = <T extends ICreateUserForm>(data: T) => request<T, IResponse<null>>({
+  method: 'POST',
+  url: '/api/user/regist',
+  data,
+});
