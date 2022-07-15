@@ -5,8 +5,8 @@ import './utils/index.ts';
 import store from './store';
 import 'element-plus/dist/index.css';
 // import "element-plus/theme-chalk/dark/css-vars.css";
-import { router } from './router';
+// import { router } from './router';
 
 const app = createApp(App);
 
-app.use(router).use(ElementPlus).use(store).mount('#app');
+app.use(ElementPlus).use(store).mount('#app');

@@ -187,7 +187,7 @@
   dependencies:
     "@vueuse/metadata" "8.4.0"
     "@vueuse/shared" "8.4.0"
-    vue-demi "*"
+    vue "*"
 
 "@vueuse/metadata@8.4.0":
   version "8.4.0"
@@ -199,7 +199,7 @@
   resolved "https://registry.yarnpkg.com/@vueuse/shared/-/shared-8.4.0.tgz#a8a99ad843321bf83620e0234b5f6145a2131583"
   integrity sha512-8ECJyrr6e/PTkJOTP4ym2KDVfabWfcx+8K2sz00XofzjKBlUeYEiBTaXor/SzoInlQLkJtMpa6Z81NYNpxzIOw==
   dependencies:
-    vue-demi "*"
+    vue "*"
 
 async-validator@^4.0.7:
   version "4.1.1"
@@ -598,7 +598,7 @@ pinia@^2.0.13:
   integrity sha512-B7rSqm1xNpwcPMnqns8/gVBfbbi7lWTByzS6aPZ4JOXSJD4Y531rZHDCoYWBwLyHY/8hWnXljgiXp6rRyrofcw==
   dependencies:
     "@vue/devtools-api" "^6.1.4"
-    vue-demi "*"
+    vue "*"
 
 postcss@^8.1.10, postcss@^8.4.13:
   version "8.4.13"
@@ -687,9 +687,9 @@ vite@^2.9.7:
   optionalDependencies:
     fsevents "~2.3.2"
 
-vue-demi@*:
+vue@*:
   version "0.12.5"
-  resolved "https://registry.yarnpkg.com/vue-demi/-/vue-demi-0.12.5.tgz#8eeed566a7d86eb090209a11723f887d28aeb2d1"
+  resolved "https://registry.yarnpkg.com/vue/-/vue-0.12.5.tgz#8eeed566a7d86eb090209a11723f887d28aeb2d1"
   integrity sha512-BREuTgTYlUr0zw0EZn3hnhC3I6gPWv+Kwh4MCih6QcAeaTlaIX0DwOVN0wHej7hSvDPecz4jygy/idsgKfW58Q==
 
 vue-router@^4.0.15:
