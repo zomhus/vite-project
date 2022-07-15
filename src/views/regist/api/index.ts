@@ -1,6 +1,6 @@
-import { IResponse } from "../../../interfaces";
+import type { IResponse } from "../../../interfaces";
 import request from "../../../request";
-import { ICreateUserForm } from "../interface";
+import type { ICreateUserForm } from "../interface";
 
 export const registApi = <T extends ICreateUserForm>(data: T) => {
   return request<T, IResponse<null>>({

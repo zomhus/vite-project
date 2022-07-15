@@ -1,4 +1,5 @@
-import { defineStore, StoreDefinition } from "pinia";
+import type { StoreDefinition } from "pinia";
+import { defineStore } from "pinia";
 
 export const store: StoreDefinition = defineStore<
   string,

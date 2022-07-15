@@ -1,6 +1,6 @@
-import { IQueryResult, IResponse } from "../../../interfaces";
+import type { IQueryResult, IResponse } from "../../../interfaces";
 import request from "../../../request";
-import { IUserTableRow } from "../interface";
+import type { IUserTableRow } from "../interface";
 
 export const list = () => {
   return request<unknown, IResponse<IQueryResult<IUserTableRow>>>({

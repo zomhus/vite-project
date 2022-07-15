@@ -1,6 +1,7 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
+import type { AxiosRequestConfig, AxiosResponse } from "axios";
+import axios from "axios";
 import { ElMessage } from "element-plus";
-import { IParams } from "../interfaces";
+import type { IParams } from "../interfaces";
 import { transformData } from "../utils";
 
 axios.interceptors.request.use((config: AxiosRequestConfig) => {

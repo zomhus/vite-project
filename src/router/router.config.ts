@@ -4,7 +4,7 @@ import Menu from "../views/adminMenu/index.vue";
 import Regist from "../views/regist/index.vue";
 import Login from "../views/login/index.vue";
 import Layout from "../layout/index.vue";
-import { RouteRecordRaw } from "vue-router";
+import type { RouteRecordRaw } from "vue-router";
 const routes: RouteRecordRaw[] = [
   {
     path: "/login",

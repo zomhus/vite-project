@@ -1,5 +1,5 @@
-import { Method } from "axios";
-import { FormInstance } from "element-plus";
+import type { Method } from "axios";
+import type { FormInstance } from "element-plus";
 
 // 提交表单基础数据格式
 export interface IModalFormInstance<T> {

@@ -8,8 +8,8 @@ export function deepClone(target: any) {
   }
   const datatype = getDataType(target);
   if (datatype === "object") {
-    let copiedTarget: any = {};
-    for (let key in target) {
+    const copiedTarget: any = {};
+    for (const key in target) {
       copiedTarget[key] = deepClone(target[key]);
     }
   }

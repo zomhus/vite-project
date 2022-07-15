@@ -1,6 +1,6 @@
-import { IQueryResult, IResponse } from "../../../interfaces";
+import type { IQueryResult, IResponse } from "../../../interfaces";
 import request from "../../../request";
-import {
+import type {
   ICreateMenuForm,
   ICreateMenuFormTree,
   IMenuTableRow,
