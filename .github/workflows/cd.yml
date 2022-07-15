@@ -1,0 +1,42 @@
+name: CD
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    name: build
+    runs-on: ubuntu-latest
+    steps:
+      # 切换到master分支
+      - name: checkout
+        uses: actions/checkout@master
+      # 使用 node:10
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+      - name: npm install
+        run: |
+          npm install
+      # 构建
+      - name: npm build
+        run: |
+          npm run build
+      # 部署
+      - name: deploy
+        uses: easingthemes/ssh-deploy@v2.0.7
+        # 注入环境变量供ssh-deploy使用
+        env:
+          # secrets中配置的私钥，用于免密连接服务器
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          # 服务器地址
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          # 用户名
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          # 部署路径
+          TARGET: ${{ secrets.TARGET }}
+          # 打包文件来源
+          SOURCE: 'dist/'
+          # 删除服务器上TARGET目录里所有文件
+          ARGS: '-avz --delete'
