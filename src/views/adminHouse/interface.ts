@@ -1,4 +1,4 @@
-import type { FormInstance } from "element-plus";
+import type { FormInstance } from 'element-plus';
 
 export interface IModalFormInstance {
   form: FormInstance;

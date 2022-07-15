@@ -1,33 +1,34 @@
-import House from "../views/adminHouse/index.vue";
-import User from "../views/adminUser/index.vue";
-import Menu from "../views/adminMenu/index.vue";
-import Regist from "../views/regist/index.vue";
-import Login from "../views/login/index.vue";
-import Layout from "../layout/index.vue";
-import type { RouteRecordRaw } from "vue-router";
+import type { RouteRecordRaw } from 'vue-router';
+import House from '../views/adminHouse/index.vue';
+import User from '../views/adminUser/index.vue';
+import Menu from '../views/adminMenu/index.vue';
+import Regist from '../views/regist/index.vue';
+import Login from '../views/login/index.vue';
+import Layout from '../layout/index.vue';
+
 const routes: RouteRecordRaw[] = [
   {
-    path: "/login",
+    path: '/login',
     component: Login,
   },
   {
-    path: "/regist",
+    path: '/regist',
     component: Regist,
   },
   {
-    path: "/",
+    path: '/',
     component: Layout,
     children: [
       {
-        path: "/user",
+        path: '/user',
         component: User,
       },
       {
-        path: "/menu",
+        path: '/menu',
         component: Menu,
       },
       {
-        path: "/house",
+        path: '/house',
         component: House,
       },
     ],

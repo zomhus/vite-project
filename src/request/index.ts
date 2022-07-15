@@ -1,8 +1,8 @@
-import type { AxiosRequestConfig, AxiosResponse } from "axios";
-import axios from "axios";
-import { ElMessage } from "element-plus";
-import type { IParams } from "../interfaces";
-import { transformData } from "../utils";
+import type { AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios from 'axios';
+import { ElMessage } from 'element-plus';
+import type { IParams } from '../interfaces';
+import { transformData } from '../utils';
 
 axios.interceptors.request.use((config: AxiosRequestConfig) => {
   transformData(config);
@@ -18,21 +18,19 @@ axios.interceptors.response.use(
     return response;
   },
   (error) => {
-    ElMessage.error("网络错误");
+    ElMessage.error('网络错误');
     return Promise.reject(error.data);
-  }
+  },
 );
 
-const request = <T, R>(params: IParams<T>): Promise<R> => {
-  return new Promise((resolve, reject) => {
-    axios({ ...params })
-      .then((res: AxiosResponse<R>) => {
-        resolve(res.data);
-      })
-      .catch((err) => {
-        reject(err);
-      });
-  });
-};
+const request = <T, R>(params: IParams<T>): Promise<R> => new Promise((resolve, reject) => {
+  axios({ ...params })
+    .then((res: AxiosResponse<R>) => {
+      resolve(res.data);
+    })
+    .catch((err) => {
+      reject(err);
+    });
+});
 
 export default request;

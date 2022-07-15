@@ -1,5 +1,5 @@
-import type { Method } from "axios";
-import type { FormInstance } from "element-plus";
+import type { Method } from 'axios';
+import type { FormInstance } from 'element-plus';
 
 // 提交表单基础数据格式
 export interface IModalFormInstance<T> {
@@ -7,7 +7,7 @@ export interface IModalFormInstance<T> {
   data: T;
 }
 
-//后端返回数据格式
+// 后端返回数据格式
 export interface IResponse<T> {
   statusCode: number;
   data: T;
